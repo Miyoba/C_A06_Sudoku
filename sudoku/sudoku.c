@@ -1,167 +1,82 @@
+/*Adressbuch*/
 #include <stdio.h>
+#include <stdlib.h>
+#include "SudokuSolver.c"
 
-#define G 9 /* Groesse des Sudokus */
-static int feld[G][G];
-static int loesungen = 0;
-
-int createSudoku(char *dateiname);
-void printSudoku();
-int solve(int x, int y);
-int checkBox(int x, int y, int wert);
-int checkVertical(int x, int wert);
-int checkHorizontal(int y, int wert);
-int check(int x, int y, int wert);
+/*Prototypen*/
+void speichern ();
+void laden ();
+void sudokuMain (char pfad[200]);
+void sudokuX ();
 
 /*
- * Prueft ob Zahl schon vorhanden (ruft fuer jede Bedingung eine Unterfunktion auf
- * Rueckgabe: 0 fuer nicht gefunden
- *            1 fuer gefunden
+Ein Programm das Personen und deren Adressen speichert , sie zurückgeben kann und bestimmte
+Eintraege loeschen kann
+@Author: Wolfgang Mair,Stefan Pitirut
+@Version: 2013-05-11
 */
-int check(int x, int y, int wert) {
-  if(checkHorizontal(y, wert))
-    return 1;
-  if(checkVertical(x, wert))
-    return 1;
-  if(checkBox(x, y, wert))
-    return 1;
-  return 0;   
-}
-
-/*
- * Prueft ob Zahl in der horizontalen Zeile schon vorhanden ist
- * Rueckgabe: 0 fuer nicht gefunden
- *            1 fuer gefunden
-*/
-int checkHorizontal(int y, int wert) {
-  int i;
-  for(i = 0; i < G; i++)
-    if(feld[y][i] == wert)
-      return 1;
-  return 0;
-}
-
-/*
- * Prueft ob Zahl in einer vertikalen Spalte schon vorhanden ist
- * Rueckgabe: 0 fuer nicht gefunden
- *            1 fuer gefunden
-*/
-int checkVertical(int x, int wert) {
-  int i;
-  for(i = 0; i < G; i++)
-    if(feld[i][x] == wert)
-      return 1;
-  return 0;
-}
-
-/*
- * Prueft ob Zahl schon in der Box vorhanden ist
- * Rueckgabe: 0 fuer nicht gefunden
- *            1 fuer gefunden
-*/
-int checkBox(int x, int y, int wert) {
-  int x_box, y_box, i, j;
-  /* Passende Ecke der Box herausfinden */
-  x_box = (int)(x / 3) * 3;
-  y_box = (int)(y / 3) * 3;
-  for(i = y_box; i < y_box + 3; i++)
-    for(j = x_box; j < x_box + 3; j++)
-      if(feld[i][j] == wert)
-        return 1;
-  return 0;
-}
-
-/*
- * Gibt alle Lösungen für ein Sudoku an
- * x,y Startwert (0,0)
- * Rueckgabe: 0 Versuch hat nicht funktioniert
- *            1 Versuch hat funktioniert
-*/
-int solve(int x, int y) {
-  int i;
-  if(x == G) {                 /* Zeilenende erreicht */
-    y++;
-    x = 0;
-    if(y == G)                 /* Ende erreicht */
-      return 1;
-  }   
-  
-  if(feld[y][x] > 0)           /* Feld schon gesetzt */
-    return solve(x+1, y);      /* Naechstes Feld */
-    
-  for(i = 1; i <= G; i++) {    /* Keine Zahl vorhanden */
-    if(!check(x, y, i)) {      /* Alle Zahlen durchgehen */
-      feld[y][x] = i;          /* Wenn Zahl passt, setzen */
-	    if(solve(x+1, y)) {      /* Naechstes Feld pruefen */
-        loesungen++;           /* Loesung gefunden, ausgeben */
-        printf("Loesung %d:\n", loesungen);
-		    printSudoku();
-		    printf("\n");
-        /*return 1;*/          /*<-- Nur eine Loesung ausgeben */
-	    }
-    }
-  }
-  
-  feld[y][x] = 0;              /* Keine Zahl hat gepasst, wieder 0 setzen */
-  return 0;
-}
-
-/*
- * Gibt ein Sudoku am Bildschirm aus
-*/
-void printSudoku() {
-  int i, j;
-  for(i = 0; i < G; i++) {
-    for(j = 0; j < G; j++) {
-      printf("%d", feld[i][j]);
-    }
-    printf("\n");
-  }
-}
-
-/*
- * Liest ein Sudoku aus einer Datei ein und speichert es in einem lokalen 2D-Array
- * Rueckgabe: 0 Datei erfplgreich eingelesen
- *            1 Fehler
-*/
-int createSudoku(char *dateiname) {
-  FILE *fp;
-  int i, j;
-  char temp[G+3] = {0};
-
-  if((fp = fopen(dateiname, "r")) == NULL) {
-    printf("Datei %s nicht gefunden!\n", dateiname);
-    return -1;
-  }
-
-  for(i = 0; i < G; i++) {
-    if(fgets(temp, G + 3, fp) == NULL) {
-      printf("Daten nicht vollstaendig!\n");
-      fclose(fp);
-			return -1;  
-    }
-    for(j = 0; j < G; j++) {
-      feld[i][j] = temp[j] - '0';
-    }
-  }
-
-  fclose(fp);
-
-  return 0;
-}
-
-int main() {
-  char pfad[200];
-  
-  printf("Bitte geben sie den Pfad zu dem Sudoku an:\n");
-  scanf("%s", pfad);
-  if(createSudoku(pfad) < 0)
-		return -1;
-  printf("### Eingelesenes Sudoku: ###\n");
-  printSudoku();
-
-  printf("\n###################\n");
-  solve(0, 0);
-  printf("Loesungen: %d\n", loesungen);
+int main (int argc , char* argv[])
+{
 	
-  return 0;
+	int eingabe;
+	char sud[82];
+	char los[82];
+	char pfad[200];
+	do
+	{
+		/* Abfrage was das Programm als naechstes machen soll*/
+		printf("Geben sie ein was sie tun wollen:\n0: EXIT\n1: Sudoku laden.\n2: Sudoku speichern.\n3: Normales Sudoku loesen.\n4: X-Sudoku loesen.\n");
+		scanf("%d",&eingabe);
+		switch(eingabe)
+		{
+			/*Falls der Benutzer 1 eingibt kann er eine Sudoku csv Datei laden*/
+			case 1: 
+				laden();
+				break;
+			
+			/*Falls der Benutzer 2 eingibt kann er eine Sudoku csv Datei speichern*/
+			case 2:
+				if(los != null)
+					speichern();
+				else
+					printf("Kein geloestes Sudoku im Zwischenspeicher!");
+				break;
+			
+			/*Bei 3 loest das Programmm ein normales Sudoku aus einer geladenen csv Datei*/
+			case 3: 
+				
+				SudokuMain();
+				break;
+			
+			/*Bei 4 loest das Programmm ein X-Sudoku aus einer geladenen csv Datei*/
+			case 4:
+				sudokuX();
+				break;
+				
+			/*Falls nichts oder etwas falsches eingegeben wird bricht er das Programm ab*/
+			default:
+			
+				eingabe = 0;
+				printf("Bye!");
+				break;
+		}
+			
+	}while(eingabe != 0);
+	
+	/*Erfolgreiches beenden des Programmes*/
+	return EXIT_SUCCESS;
+  
+}
+
+/*Erstellt ein csv-Datei mit einem gelösten sudoku*/
+void speichern ()
+{
+	
+}
+
+/*Ladet einen csv Dateipfad in den speicher*/
+void laden ()
+{	
+	printf("Bitte geben sie den Pfad zu dem Sudoku an:\n");
+	scanf("%s", pfad);
 }
