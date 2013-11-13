@@ -4,9 +4,9 @@
 #include "SudokuSolver.c"
 
 /*Prototypen*/
-void speichern ();
-void laden ();
-void sudokuMain (char pfad[200]);
+void speichern (char[] pfad, int[][] los);
+char[] laden ();
+int[][] sudokuMain (char pfad[200]);
 void sudokuX ();
 
 /*
@@ -17,11 +17,9 @@ Eintraege loeschen kann
 */
 int main (int argc , char* argv[])
 {
-	
 	int eingabe;
-	char sud[82];
-	char los[82];
-	char pfad[200];
+	int los[][];
+
 	do
 	{
 		/* Abfrage was das Programm als naechstes machen soll*/
@@ -31,7 +29,7 @@ int main (int argc , char* argv[])
 		{
 			/*Falls der Benutzer 1 eingibt kann er eine Sudoku csv Datei laden*/
 			case 1: 
-				laden();
+				pfad = laden();
 				break;
 			
 			/*Falls der Benutzer 2 eingibt kann er eine Sudoku csv Datei speichern*/
@@ -45,7 +43,7 @@ int main (int argc , char* argv[])
 			/*Bei 3 loest das Programmm ein normales Sudoku aus einer geladenen csv Datei*/
 			case 3: 
 				
-				SudokuMain();
+				los = SudokuMain(pfad);
 				break;
 			
 			/*Bei 4 loest das Programmm ein X-Sudoku aus einer geladenen csv Datei*/
@@ -69,14 +67,33 @@ int main (int argc , char* argv[])
 }
 
 /*Erstellt ein csv-Datei mit einem gelösten sudoku*/
-void speichern ()
+void speichern (char[] pfad, int[][] los)
 {
-	
+	int i,z;
+	FILE *fp;
+
+	if(los != NULL){
+		if((fp = fopen(pfad, "w+")) == NULL) {
+			printf("Datei %s nicht gefunden!\n", pfad);
+			return -1;
+		}
+		else{
+			for(i = 0; i<9;i++){
+				for(i = 0; i<9;i++){
+					fprintf (datei, "%d",los[i][z]);
+				}
+			}
+			
+		}
+	}	
 }
 
 /*Ladet einen csv Dateipfad in den speicher*/
-void laden ()
+char[] laden ()
 {	
+	char pfad[200];
 	printf("Bitte geben sie den Pfad zu dem Sudoku an:\n");
 	scanf("%s", pfad);
+	
+	return pfad;
 }

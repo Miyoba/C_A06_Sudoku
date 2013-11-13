@@ -149,7 +149,7 @@ int createSudoku(char *dateiname) {
 	return 0;
 }
 
-void sudokuMain(char pfad[200]) {
+int[][] sudokuMain(char pfad[200]) {
 	
 	if(createSudoku(pfad) < 0)
 		return EXIT_FAILURE;
@@ -160,4 +160,6 @@ void sudokuMain(char pfad[200]) {
 	printf("\n###################\n");
 	solve(0, 0);
 	printf("Loesungen: %d\n", loesungen);
+	
+	return feld;
 }
