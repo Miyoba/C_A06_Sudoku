@@ -1,0 +1,8 @@
+prog: sudoku.o SudokuSolver.o 
+	gcc -o prog sudoku.o SudokuSolver.o
+
+sudoku.o: sudoku.c
+	gcc -c sudoku.c
+
+SudokuSolver.o: SudokuSolver.c
+	gcc -c SudokuSolver.c
