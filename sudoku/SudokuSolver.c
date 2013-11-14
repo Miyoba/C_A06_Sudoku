@@ -1,8 +1,7 @@
 #include <stdio.h>
+#include "sudoku.h"
 
-#define G 9 /* Groesse des Sudokus */
-static int feld[G][G];
-static int loesungen = 0;
+
 
 /*
 * Prueft ob Zahl schon vorhanden (ruft fuer jede Bedingung eine Unterfunktion auf

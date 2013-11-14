@@ -1,19 +1,7 @@
 /*Adressbuch*/
 #include <stdio.h>
 #include <stdlib.h>
-
-/*Prototypen*/
-void speichern (int*[9]);
-char* laden ();
-int** sudokuMain (char[]);
-void sudokuX ();
-int createSudoku(char*);
-void printSudoku();
-int solve(int, int);
-int checkBox(int, int, int);
-int checkVertical(int, int);
-int checkHorizontal(int, int);
-int check(int , int , int );
+#include "sudoku.h"
 
 
 /*
