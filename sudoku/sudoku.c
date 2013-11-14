@@ -1,13 +1,20 @@
 /*Adressbuch*/
 #include <stdio.h>
 #include <stdlib.h>
-#include "SudokuSolver.c"
 
 /*Prototypen*/
-void speichern (char[] pfad, int[][] los);
-char[] laden ();
-int[][] sudokuMain (char pfad[200]);
+void speichern (int*[9]);
+char* laden ();
+int** sudokuMain (char[]);
 void sudokuX ();
+int createSudoku(char*);
+void printSudoku();
+int solve(int, int);
+int checkBox(int, int, int);
+int checkVertical(int, int);
+int checkHorizontal(int, int);
+int check(int , int , int );
+
 
 /*
 Ein Programm das Personen und deren Adressen speichert , sie zurückgeben kann und bestimmte
@@ -18,7 +25,8 @@ Eintraege loeschen kann
 int main (int argc , char* argv[])
 {
 	int eingabe;
-	int los[][];
+	int** los;
+	char* pfad;
 
 	do
 	{
@@ -34,8 +42,8 @@ int main (int argc , char* argv[])
 			
 			/*Falls der Benutzer 2 eingibt kann er eine Sudoku csv Datei speichern*/
 			case 2:
-				if(los != null)
-					speichern();
+				if(los != NULL)
+					speichern(los);
 				else
 					printf("Kein geloestes Sudoku im Zwischenspeicher!");
 				break;
@@ -43,7 +51,7 @@ int main (int argc , char* argv[])
 			/*Bei 3 loest das Programmm ein normales Sudoku aus einer geladenen csv Datei*/
 			case 3: 
 				
-				los = SudokuMain(pfad);
+				los = sudokuMain(pfad);
 				break;
 			
 			/*Bei 4 loest das Programmm ein X-Sudoku aus einer geladenen csv Datei*/
@@ -67,21 +75,28 @@ int main (int argc , char* argv[])
 }
 
 /*Erstellt ein csv-Datei mit einem gelösten sudoku*/
-void speichern (char[] pfad, int[][] los)
+void speichern (int los[][9])
 {
 	int i,z;
 	FILE *fp;
 
+
+	char pfadT[200];
+	
+	printf("Bitte geben sie den Pfad fuer das Sudoku an:\n");
+	scanf("%s", pfadT);
+
+
 	if(los != NULL){
-		if((fp = fopen(pfad, "w+")) == NULL) {
-			printf("Datei %s nicht gefunden!\n", pfad);
-			return -1;
+		if((fp = fopen(pfadT, "w+")) == NULL) {
+			printf("Datei %s nicht gefunden!\n", pfadT);
 		}
 		else{
 			for(i = 0; i<9;i++){
 				for(i = 0; i<9;i++){
-					fprintf (datei, "%d",los[i][z]);
+					fprintf (fp, "%d",los[i][z]);
 				}
+				fprintf(fp,"\n");
 			}
 			
 		}
@@ -89,11 +104,15 @@ void speichern (char[] pfad, int[][] los)
 }
 
 /*Ladet einen csv Dateipfad in den speicher*/
-char[] laden ()
+char* laden ()
 {	
-	char pfad[200];
+	char pfadT[200];
+	char* pfadP;
+	pfadP = NULL;
 	printf("Bitte geben sie den Pfad zu dem Sudoku an:\n");
-	scanf("%s", pfad);
+	scanf("%s", pfadT);
 	
-	return pfad;
+	pfadP = pfadT;
+
+	return pfadT;
 }

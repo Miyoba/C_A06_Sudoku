@@ -4,14 +4,6 @@
 static int feld[G][G];
 static int loesungen = 0;
 
-int createSudoku(char *dateiname);
-void printSudoku();
-int solve(int x, int y);
-int checkBox(int x, int y, int wert);
-int checkVertical(int x, int wert);
-int checkHorizontal(int y, int wert);
-int check(int x, int y, int wert);
-
 /*
 * Prueft ob Zahl schon vorhanden (ruft fuer jede Bedingung eine Unterfunktion auf
 * Rueckgabe: 0 fuer nicht gefunden
@@ -149,17 +141,25 @@ int createSudoku(char *dateiname) {
 	return 0;
 }
 
-int[][] sudokuMain(char pfad[200]) {
+int** sudokuMain(char* pfad) {
 	
+	int** feldP;
+	feldP = NULL;
+
 	if(createSudoku(pfad) < 0)
-		return EXIT_FAILURE;
-	
-	printf("### Eingelesenes Sudoku: ###\n");
+		return NULL;
+	else
+	{
+		printf("### Eingelesenes Sudoku: ###\n");
 	printSudoku();
 
 	printf("\n###################\n");
 	solve(0, 0);
 	printf("Loesungen: %d\n", loesungen);
 	
-	return feld;
+	**feldP = feld[0][0];
+
+	return feldP;
+	}
+	
 }
