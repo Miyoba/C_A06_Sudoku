@@ -3,16 +3,14 @@
 #include <stdlib.h>
 #include "sudoku.h"
 
-
-
 /*
-Ein Programm das Personen und deren Adressen speichert , sie zurückgeben kann und bestimmte
-Eintraege loeschen kann
+Ein Programm das ein Sudoku Raetsel einliest und es nach belieben entweder loesen oder speichern kann
 @Author: Wolfgang Mair,Stefan Pitirut
-@Version: 2013-05-11
+@Version: 2013-14-11
 */
 int main (int argc , char* argv[])
 {
+	//die benoetigten Attribute
 	int eingabe;
 	int** los;
 	los = NULL;
@@ -77,11 +75,13 @@ void speichern (int los[][9])
 	printf("Bitte geben sie den Pfad fuer das Sudoku an:\n");
 	scanf("%s", pfadT);
 
-
+	//wenn es kein geloestes Sudoku ist soll eine Fehlermeldung kommen
 	if(los != NULL){
+		//oeffnen der Datei
 		if((fp = fopen(pfadT, "w+")) == NULL) {
 			printf("Datei %s nicht gefunden!\n", pfadT);
 		}
+		//beschreiben der Datei
 		else{
 			for(i = 0; i<9;i++){
 				for(i = 0; i<9;i++){
@@ -91,6 +91,8 @@ void speichern (int los[][9])
 			}
 			
 		}
+		//schliessen der Datei
+		fclose (fp);
 	}	
 }
 
@@ -100,6 +102,7 @@ char* laden ()
 	char pfadT[200];
 	char* pfadP;
 	pfadP = NULL;
+	//Abfragen des Pfades der Datei
 	printf("Bitte geben sie den Pfad zu dem Sudoku an:\n");
 	scanf("%s", pfadT);
 	
@@ -108,6 +111,7 @@ char* laden ()
 	return pfadP;
 }
 
+//Kein X-Sudoku gefunden
 void sudokuX()
 {
 
