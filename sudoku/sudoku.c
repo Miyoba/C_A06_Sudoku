@@ -4,6 +4,7 @@
 #include "sudoku.h"
 
 
+
 /*
 Ein Programm das Personen und deren Adressen speichert , sie zurückgeben kann und bestimmte
 Eintraege loeschen kann
@@ -14,8 +15,10 @@ int main (int argc , char* argv[])
 {
 	int eingabe;
 	int** los;
+	los = NULL;
 	char* pfad;
-
+	pfad = NULL;
+	
 	do
 	{
 		/* Abfrage was das Programm als naechstes machen soll*/
@@ -102,5 +105,10 @@ char* laden ()
 	
 	pfadP = pfadT;
 
-	return pfadT;
+	return pfadP;
+}
+
+void sudokuX()
+{
+
 }

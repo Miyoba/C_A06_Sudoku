@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "sudoku.h"
 
-
-
 /*
 * Prueft ob Zahl schon vorhanden (ruft fuer jede Bedingung eine Unterfunktion auf
 * Rueckgabe: 0 fuer nicht gefunden
