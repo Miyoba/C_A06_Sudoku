@@ -1,0 +1,94 @@
+[33mcommit b26997e264f4c399d1670a1da591a06bb065b454[m
+Merge: d3afad8 f3905ae
+Author: spitirut <spitirut@student.tgm.ac.at>
+Date:   Thu Nov 14 22:54:24 2013 +0100
+
+    Merge branch 'master' of https://github.com/wmair-tgm/C_A06_Sudoku
+
+[33mcommit d3afad82a17eacfa44ac82da64d855c1c69d4d78[m
+Author: spitirut <spitirut@student.tgm.ac.at>
+Date:   Thu Nov 14 22:53:15 2013 +0100
+
+    Revert "test"
+    
+    This reverts commit cf01dca97f6396bd9aba449b607a9641e9c18a69.
+
+[33mcommit cf01dca97f6396bd9aba449b607a9641e9c18a69[m
+Author: spitirut <spitirut@student.tgm.ac.at>
+Date:   Thu Nov 14 22:53:12 2013 +0100
+
+    test
+    
+    das
+
+[33mcommit f3905aed7889d2b1bd98e5471e1d896f48b5a87e[m
+Author: wmair-tgm <wmair@student.tgm.ac.at>
+Date:   Thu Nov 14 22:46:48 2013 +0100
+
+    Protokoll Umwandeln in PDF
+
+[33mcommit af764bae032a0c986561a038e40a4f5015d29276[m
+Author: wmair-tgm <wmair@student.tgm.ac.at>
+Date:   Thu Nov 14 22:43:20 2013 +0100
+
+    Kommentieren des derzeitigen Programmes V1.4
+
+[33mcommit f378751a3e027139c6084d8c5c19077ba2902202[m
+Author: wmair-tgm <wmair@student.tgm.ac.at>
+Date:   Thu Nov 14 21:48:29 2013 +0100
+
+    Erweiterung des Protokolls
+
+[33mcommit 78ff618c7132bf7f7e6c00c3005f34ab4090727e[m
+Author: spitirut <spitirut@student.tgm.ac.at>
+Date:   Thu Nov 14 21:33:12 2013 +0100
+
+    doku
+    
+    the dokumentation u awaited for long :3
+
+[33mcommit 6f0c67f53300efb84088b0920491b0bc3bd508fe[m
+Author: spitirut <spitirut@student.tgm.ac.at>
+Date:   Thu Nov 14 21:30:07 2013 +0100
+
+    makefile
+    
+    the makefile we awaited sooo long :3
+
+[33mcommit 9d2611473b51b552a29a1ba8d352ebfd67642599[m
+Author: wmair-tgm <wmair@student.tgm.ac.at>
+Date:   Thu Nov 14 19:55:46 2013 +0100
+
+    Minimale verbesserungen V1.3.1
+
+[33mcommit 33b848f778a876b1620bd5881b0d1601daca2b6d[m
+Author: wmair-tgm <wmair@student.tgm.ac.at>
+Date:   Thu Nov 14 19:40:09 2013 +0100
+
+    hinzufuegen von einem Headerfile V1.3
+
+[33mcommit 65a038e8bd504745e93b20a4653cfdd52e56e740[m
+Author: wmair-tgm <wmair@student.tgm.ac.at>
+Date:   Thu Nov 14 19:25:58 2013 +0100
+
+    Ausbesserung der Syntax fehler V1.2
+
+[33mcommit 2a5ec8ce7ea3cfac2ee5f2f59f66f5d6d54cb4c4[m
+Author: wmair-tgm <wmair@student.tgm.ac.at>
+Date:   Wed Nov 13 21:09:33 2013 +0100
+
+    Erweiterung der Methoden V1.1
+
+[33mcommit b9c960f6720d8a6f2f72e65159d9947372906ae9[m
+Author: wmair-tgm <wmair@student.tgm.ac.at>
+Date:   Wed Nov 13 16:14:13 2013 +0100
+
+    Grundschema V1.0
+
+[33mcommit c720ffedcd5a3e6d836a139c9837666eb70648ca[m
+Author: spitirut <spitirut@student.tgm.ac.at>
+Date:   Wed Nov 13 15:44:06 2013 +0100
+
+    normales sudoku
+    
+    here u go bro
