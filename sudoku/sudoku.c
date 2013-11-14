@@ -18,7 +18,7 @@ int main (int argc , char* argv[])
 	los = NULL;
 	char* pfad;
 	pfad = NULL;
-	
+
 	do
 	{
 		/* Abfrage was das Programm als naechstes machen soll*/
@@ -27,10 +27,10 @@ int main (int argc , char* argv[])
 		switch(eingabe)
 		{
 			/*Falls der Benutzer 1 eingibt kann er eine Sudoku csv Datei laden*/
-			case 1: 
+			case 1:
 				pfad = laden();
 				break;
-			
+
 			/*Falls der Benutzer 2 eingibt kann er eine Sudoku csv Datei speichern*/
 			case 2:
 				if(los != NULL)
@@ -38,42 +38,42 @@ int main (int argc , char* argv[])
 				else
 					printf("Kein geloestes Sudoku im Zwischenspeicher!");
 				break;
-			
+
 			/*Bei 3 loest das Programmm ein normales Sudoku aus einer geladenen csv Datei*/
-			case 3: 
-				
+			case 3:
+
 				los = sudokuMain(pfad);
 				break;
-			
+
 			/*Bei 4 loest das Programmm ein X-Sudoku aus einer geladenen csv Datei*/
 			case 4:
 				sudokuX();
 				break;
-				
+
 			/*Falls nichts oder etwas falsches eingegeben wird bricht er das Programm ab*/
 			default:
-			
+
 				eingabe = 0;
 				printf("Bye!");
 				break;
 		}
-			
+
 	}while(eingabe != 0);
-	
+
 	/*Erfolgreiches beenden des Programmes*/
 	return EXIT_SUCCESS;
-  
+
 }
 
 /*Erstellt ein csv-Datei mit einem gelösten sudoku*/
-void speichern (int los[][9])
+void speichern (int los[9][9])
 {
 	int i,z;
 	FILE *fp;
 
 
 	char pfadT[200];
-	
+
 	printf("Bitte geben sie den Pfad fuer das Sudoku an:\n");
 	scanf("%s", pfadT);
 
@@ -89,20 +89,20 @@ void speichern (int los[][9])
 				}
 				fprintf(fp,"\n");
 			}
-			
+
 		}
-	}	
+	}
 }
 
 /*Ladet einen csv Dateipfad in den speicher*/
 char* laden ()
-{	
+{
 	char pfadT[200];
 	char* pfadP;
 	pfadP = NULL;
 	printf("Bitte geben sie den Pfad zu dem Sudoku an:\n");
 	scanf("%s", pfadT);
-	
+
 	pfadP = pfadT;
 
 	return pfadP;
